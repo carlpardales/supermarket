@@ -6,6 +6,7 @@ using Supermarket.API.Domain.Services;
 using Supermarket.API.Domain.Models;
 using Supermarket.API.Resources;
 using Supermarket.API.Extensions;
+using Supermarket.API.Domain.Services.Communication;
 
 namespace Supermarket.API.Controllers
 {
@@ -37,8 +38,13 @@ namespace Supermarket.API.Controllers
                 return BadRequest(ModelState.GetErrorMessages());
 
             var category = _mapper.Map<SaveCategoryResource, Category>(resource);
+            var result = await _categoryService.SaveAsync(category);
 
-            return BadRequest();
+            if(!result.Success)
+                return BadRequest(result.Message);
+
+            var categoryResource = _mapper.Map<Category, CategoryResource>(result.Category);
+            return Ok(categoryResource);
         }
     }
 }

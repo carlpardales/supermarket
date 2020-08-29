@@ -1,8 +1,10 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Supermarket.API.Domain.Services;
 using Supermarket.API.Domain.Models;
 using Supermarket.API.Domain.Repositories;
+using Supermarket.API.Domain.Services.Communication;
 
 namespace Supermarket.API.Services
 {
@@ -17,6 +19,23 @@ namespace Supermarket.API.Services
         public async Task<IEnumerable<Category>> ListAsync()
         {
             return await _categoryRepository.ListAsync();
+        }
+
+        public async Task<SaveCategoryResponse> SaveAsync(Category category)
+        {
+            try
+            {
+                await _categoryRepository.AddAsync(category);
+
+                return new SaveCategoryResponse(category);
+            }
+            catch (Exception ex)
+            {
+                // Do some logging stuff
+                return new SaveCategoryResponse($"An error occurred when saving this category: {ex.Message}");
+            }
+
+
         }
     }
 }
