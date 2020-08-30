@@ -11,9 +11,12 @@ namespace Supermarket.API.Services
     public class CategoryService : ICategoryService
     {
         private readonly ICategoryRepository _categoryRepository;
-        public CategoryService(ICategoryRepository categoryRepository)
+        private readonly IUnitOfWork _unitOfWork;
+
+        public CategoryService(ICategoryRepository categoryRepository, IUnitOfWork unitOfWork)
         {
             _categoryRepository = categoryRepository;
+            _unitOfWork = unitOfWork;
         }
 
         public async Task<IEnumerable<Category>> ListAsync()
@@ -26,6 +29,7 @@ namespace Supermarket.API.Services
             try
             {
                 await _categoryRepository.AddAsync(category);
+                await _unitOfWork.CompleteAsync();
 
                 return new SaveCategoryResponse(category);
             }
@@ -34,8 +38,6 @@ namespace Supermarket.API.Services
                 // Do some logging stuff
                 return new SaveCategoryResponse($"An error occurred when saving this category: {ex.Message}");
             }
-
-
         }
     }
 }
