@@ -1,4 +1,4 @@
-# Supermarket API ** Supermarket API **
+# Supermarket API
 
 A simple RESTful API to manage a super market catalogue. It is built with ASP.Net Core 3.1 following the principle of clean, decoupled and maintainable architecture.
 
