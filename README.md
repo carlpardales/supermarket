@@ -2,7 +2,7 @@
 
 A simple RESTful API to manage a super market catalogue. It is built with ASP.Net Core 3.1 following the principle of clean, decoupled and maintainable architecture.
 
-#### Note: This project is created through a free tutorial by [Evandro Gomes] (https://github.com/evgomes). Check out the complete guide in [freecodecamp](https://www.freecodecamp.org/news/an-awesome-guide-on-how-to-build-restful-apis-with-asp-net-core-87b818123e28/).
+#### Note: This project is created through a free tutorial by [Evandro Gomes](https://github.com/evgomes). Check out the complete guide in [freecodecamp](https://www.freecodecamp.org/news/an-awesome-guide-on-how-to-build-restful-apis-with-asp-net-core-87b818123e28/).
 
 ## Environment Setup
 1. Install [.NET Core 3.1](https://dotnet.microsoft.com/download)
